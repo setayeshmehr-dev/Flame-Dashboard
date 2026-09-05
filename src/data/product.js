@@ -1,4 +1,3 @@
-
 export const products = [
   {
     id: "PRD-1001",
@@ -10,7 +9,7 @@ export const products = [
     stock: 999,
     price: 299,
     currency: "USD",
-    createdAt: "Jan 15, 2026",
+    createdAt: "2026-01-15",
   },
   {
     id: "PRD-1002",
@@ -22,7 +21,7 @@ export const products = [
     stock: 999,
     price: 599,
     currency: "USD",
-    createdAt: "Jan 10, 2026",
+    createdAt: "2026-01-10",
   },
   {
     id: "PRD-1003",
@@ -34,7 +33,7 @@ export const products = [
     stock: 999,
     price: 1499,
     currency: "USD",
-    createdAt: "Dec 20, 2025",
+    createdAt: "2025-12-20",
   },
   {
     id: "PRD-1004",
@@ -46,7 +45,7 @@ export const products = [
     stock: 999,
     price: 79,
     currency: "USD",
-    createdAt: "Dec 15, 2025",
+    createdAt: "2025-12-15",
   },
   {
     id: "PRD-1005",
@@ -58,7 +57,7 @@ export const products = [
     stock: 999,
     price: 49,
     currency: "USD",
-    createdAt: "Nov 28, 2025",
+    createdAt: "2025-11-28",
   },
   {
     id: "PRD-1006",
@@ -70,7 +69,7 @@ export const products = [
     stock: 999,
     price: 149,
     currency: "USD",
-    createdAt: "Nov 15, 2025",
+    createdAt: "2025-11-15",
   },
   {
     id: "PRD-1007",
@@ -82,7 +81,7 @@ export const products = [
     stock: 999,
     price: 199,
     currency: "USD",
-    createdAt: "Oct 30, 2025",
+    createdAt: "2025-10-30",
   },
   {
     id: "PRD-1008",
@@ -94,7 +93,7 @@ export const products = [
     stock: 999,
     price: 249,
     currency: "USD",
-    createdAt: "Oct 15, 2025",
+    createdAt: "2025-10-15",
   },
   {
     id: "PRD-1009",
@@ -106,7 +105,7 @@ export const products = [
     stock: 999,
     price: 349,
     currency: "USD",
-    createdAt: "Sep 25, 2025",
+    createdAt: "2025-09-25",
   },
   {
     id: "PRD-1010",
@@ -118,7 +117,7 @@ export const products = [
     stock: 999,
     price: 99,
     currency: "USD",
-    createdAt: "Sep 10, 2025",
+    createdAt: "2025-09-10",
   },
   {
     id: "PRD-1011",
@@ -130,7 +129,7 @@ export const products = [
     stock: 999,
     price: 179,
     currency: "USD",
-    createdAt: "Aug 20, 2025",
+    createdAt: "2025-08-20",
   },
   {
     id: "PRD-1012",
@@ -142,7 +141,7 @@ export const products = [
     stock: 999,
     price: 129,
     currency: "USD",
-    createdAt: "Aug 5, 2025",
+    createdAt: "2025-08-05",
   },
   {
     id: "PRD-1013",
@@ -154,7 +153,7 @@ export const products = [
     stock: 999,
     price: 89,
     currency: "USD",
-    createdAt: "Jul 15, 2025",
+    createdAt: "2025-07-15",
   },
   {
     id: "PRD-1014",
@@ -166,7 +165,7 @@ export const products = [
     stock: 999,
     price: 39,
     currency: "USD",
-    createdAt: "Mar 1, 2025",
+    createdAt: "2025-03-01",
   },
   {
     id: "PRD-1015",
@@ -178,6 +177,62 @@ export const products = [
     stock: 999,
     price: 159,
     currency: "USD",
-    createdAt: "Jul 1, 2025",
+    createdAt: "2025-07-01",
   },
-]
+];
+
+// فقط در حافظه (RAM) نگه می‌دارد — با Reload صفحه ریست می‌شود
+let _products = [...products];
+
+export function getProducts() {
+  return [..._products];
+}
+
+export function saveProducts(newProducts) {
+  _products = [...newProducts];
+}
+
+export function createProduct(productData) {
+  const newProduct = {
+    id: `PRD-${Math.floor(1000 + Math.random() * 9000)}`,
+    name: productData.name,
+    description: productData.description,
+    category: productData.category,
+    status: productData.status,
+    stock: Number(productData.stock),
+    price: Number(productData.price),
+    currency: "USD",
+    createdAt: productData.createdAt,
+  };
+
+  _products = [newProduct, ..._products];
+
+  return newProduct;
+}
+
+export function updateProduct(id, productData) {
+  const currentProducts = getProducts();
+  const index = currentProducts.findIndex((product) => product.id === id);
+
+  if (index === -1) return null;
+
+  currentProducts[index] = {
+    ...currentProducts[index],
+    name: productData.name,
+    description: productData.description,
+    category: productData.category,
+    status: productData.status,
+    stock: Number(productData.stock),
+    price: Number(productData.price),
+    currency: "USD",
+    createdAt: productData.createdAt,
+  };
+
+  _products = [...currentProducts];
+
+  return currentProducts[index];
+}
+
+export function deleteProduct(id) {
+  _products = _products.filter((product) => product.id !== id);
+}
