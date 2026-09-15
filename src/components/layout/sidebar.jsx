@@ -26,7 +26,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, setCollapsed, col
       <Button
         onClick={() => setCollapsed(!collapsed)}
         variant="ghost"
-        className="w-6! h-6 rounded-full hidden lg:flex bg-background border p-0 border-border absolute z-30 -right-3 top-20"
+        className="w-6! h-6 rounded-full hidden lg:flex bg-background border p-0 border-border absolute z-50 -right-3 top-20"
       >
         {collapsed ? (
           <ChevronRight className="size-3" />
