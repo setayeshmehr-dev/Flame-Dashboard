@@ -225,3 +225,13 @@ a {
 .dark [data-sonner-toast] [data-icon] {
   color: #00d492 !important;
 }
+
+
+.group\/scroll [data-slot="scroll-area-scrollbar"] {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.group\/scroll:hover [data-slot="scroll-area-scrollbar"] {
+  opacity: 1;
+}

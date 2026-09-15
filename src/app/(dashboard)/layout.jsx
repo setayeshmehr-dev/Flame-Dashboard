@@ -18,7 +18,15 @@ export default function DashboardLayout({ children }) {
   const isCollapsed = isDesktop && collapsed;
   const [searchOpen, setSearchOpen] = useState(false)
   const [appearanceOpen, setAppearanceOpen] = useState(false)
-  const [layoutMode, setLayoutMode] = useState("sidebar")
+  const [layoutMode, setLayoutMode] = useState(null)
+
+  useEffect(() => {
+    const savedLayout = localStorage.getItem("layoutMode") || "sidebar"
+    const savedColor = localStorage.getItem("colorPreset") || "red"
+
+    document.documentElement.dataset.colorPreset = savedColor
+    setLayoutMode(savedLayout)
+  }, [])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -34,6 +42,14 @@ export default function DashboardLayout({ children }) {
     };
   }, []);
 
+  if (!layoutMode) {
+    return <div className="min-h-screen bg-background" />
+  }
+
+  const changeLayout = (value) => {
+    setLayoutMode(value)
+    localStorage.setItem("layoutMode", value)
+  }
   return (
     <NotificationProvider>
       <div className="flex min-h-screen h-dvh  overflow-hidden">
@@ -69,7 +85,8 @@ export default function DashboardLayout({ children }) {
           )}
 
           {/* Main content — flex-1 + overflow-y-auto + pb-safe */}
-          <main className="flex-1 overflow-y-auto p-4 sm:p-6 pb-24 sm:pb-6">
+          <main
+            className={`flex-1 overflow-y-auto p-4 sm:p-6 pb-24 sm:pb-6 ${layoutMode === "topnav" ? "mt-12" : ""}`}>
             {children}
           </main>
 
@@ -80,11 +97,10 @@ export default function DashboardLayout({ children }) {
         )}
 
         {appearanceOpen && (
-          <Appearance 
-            layoutMode={layoutMode} 
-            setLayoutMode={setLayoutMode} 
-            appearanceOpen={appearanceOpen} 
-            setAppearanceOpen={setAppearanceOpen} 
+          <Appearance
+            layoutMode={layoutMode}
+            setLayoutMode={changeLayout}
+            setAppearanceOpen={setAppearanceOpen}
           />
         )}
 

@@ -17,7 +17,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, setCollapsed, col
       style={{ width: collapsed ? "75px" : "256px" }}
       className={`
         fixed lg:sticky z-50 transition-all duration-500 lg:transition-none lg:top-0 lg:left-0
-        h-dvh lg:h-screen border-r flex flex-col border-border bg-background overflow-hidden
+        h-dvh lg:h-screen border-r flex flex-col border-border bg-background 
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
         lg:translate-x-0
       `}
@@ -65,7 +65,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, setCollapsed, col
       </Button>
 
       {/* ─── Navigation — اسکرول‌خور ─── */}
-      <ScrollArea className="flex-1 min-h-0 w-full">
+      <ScrollArea className="group/scroll flex-1 min-h-0 w-full">
         <div className={`py-2 ${collapsed ? "px-0" : "px-2"}`}>
           <Accordion multiple defaultValue={sidebarGroups.map((group) => group.group)}>
             {sidebarGroups.map((group) => (

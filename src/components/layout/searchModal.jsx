@@ -63,7 +63,7 @@ export default function SearchModal({setSearchOpen}) {
 
     return (
         <>
-            <div onClick={() => setSearchOpen(false)} className="fixed inset-0  z-50 flex items-center justify-center bg-black/40"></div>
+            <div onClick={() => setSearchOpen(false)} className="fixed inset-0 isolate z-50 bg-black/30 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0"></div>
 
 
             <div onClick={(e)=> e.stopPropagation()} className=" fixed top-[50%] overflow-hidden left-[50%] translate-[-50%] z-60 w-[90%]  max-w-127.5 rounded-xl bg-background shadow-xl border">
