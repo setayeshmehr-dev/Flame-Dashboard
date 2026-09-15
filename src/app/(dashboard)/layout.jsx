@@ -21,6 +21,22 @@ export default function DashboardLayout({ children }) {
   const [layoutMode, setLayoutMode] = useState(null)
 
   useEffect(() => {
+    const handlePreferencesChange = () => {
+      const savedLayout = localStorage.getItem("layoutMode") || "sidebar"
+      const savedColor = localStorage.getItem("colorPreset") || "red"
+
+      setLayoutMode(savedLayout)
+      document.documentElement.dataset.colorPreset = savedColor
+    }
+
+    window.addEventListener("preferencesChange", handlePreferencesChange)
+
+    return () => {
+      window.removeEventListener("preferencesChange", handlePreferencesChange)
+    }
+  }, [])
+
+  useEffect(() => {
     const savedLayout = localStorage.getItem("layoutMode") || "sidebar"
     const savedColor = localStorage.getItem("colorPreset") || "red"
 

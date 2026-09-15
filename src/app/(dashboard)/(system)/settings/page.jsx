@@ -6,12 +6,6 @@ import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import {
   User,
-  Mail,
-  Phone,
-  MapPin,
-  Briefcase,
-  Shield,
-  Pencil,
   Save,
   X,
   Sun,
@@ -69,16 +63,17 @@ const colorPresets = [
 export default function SettingsPage() {
   const router = useRouter()
   const { theme, setTheme } = useTheme()
-
-  /* ─── Appearance state ─── */
   const [color, setColor] = useState("red")
   const [layoutMode, setLayoutMode] = useState("sidebar")
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
-      document.documentElement.dataset.colorPreset = color
-    }
-  }, [color])
+    const savedColor = localStorage.getItem("colorPreset") || "red"
+    const savedLayout = localStorage.getItem("layoutMode") || "sidebar"
+
+    setColor(savedColor)
+    setLayoutMode(savedLayout)
+    document.documentElement.dataset.colorPreset = savedColor
+  }, [])
 
   /* ─── Profile form state ─── */
   const [activeTab, setActiveTab] = useState("profile")
@@ -108,6 +103,19 @@ export default function SettingsPage() {
   const handleCancelProfile = () => {
     setForm({ ...userData })
     setErrors({})
+  }
+
+   const changeColor = (value) => {
+    setColor(value)
+    localStorage.setItem("colorPreset", value)
+    document.documentElement.dataset.colorPreset = value
+    window.dispatchEvent(new Event("preferencesChange"))
+  }
+
+  const changeLayout = (value) => {
+    setLayoutMode(value)
+    localStorage.setItem("layoutMode", value)
+    window.dispatchEvent(new Event("preferencesChange"))
   }
 
   return (
@@ -171,7 +179,7 @@ export default function SettingsPage() {
                   className="min-w-0"
                 />
                 {errors.name && (
-                  <p className="text-xs text-destructive break-words">{errors.name}</p>
+                  <p className="text-xs text-destructive wrap-break-word">{errors.name}</p>
                 )}
               </div>
 
@@ -186,7 +194,7 @@ export default function SettingsPage() {
                   className="min-w-0"
                 />
                 {errors.email && (
-                  <p className="text-xs text-destructive break-words">{errors.email}</p>
+                  <p className="text-xs text-destructive wrap-break-word">{errors.email}</p>
                 )}
               </div>
 
@@ -317,7 +325,7 @@ export default function SettingsPage() {
                     <AppearanceColorItem
                       key={preset.id}
                       active={color === preset.id}
-                      onClick={() => setColor(preset.id)}
+                      onClick={() => changeColor(preset.id)}
                       color={preset.color}
                       label={preset.label}
                       
@@ -342,13 +350,13 @@ export default function SettingsPage() {
                 <div className="grid grid-cols-4 gap-3">
                   <AppearanceItem
                     active={layoutMode === "sidebar"}
-                    onClick={() => setLayoutMode("sidebar")}
+                    onClick={() => changeLayout("sidebar")}
                     icon={PanelLeft}
                     label="Sidebar"
                   />
                   <AppearanceItem
                     active={layoutMode === "topnav"}
-                    onClick={() => setLayoutMode("topnav")}
+                    onClick={() => changeLayout("topnav")}
                     icon={PanelTop}
                     label="Top Nav"
                   />
