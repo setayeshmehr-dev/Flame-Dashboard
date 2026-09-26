@@ -9,14 +9,7 @@ import ConversationList from "@/components/chat/conversationList"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import {
-  ArrowLeft,
-  MoreHorizontal,
-  Paperclip,
-  Phone,
-  Send,
-  Video,
-} from "lucide-react"
+import { ArrowLeft, MoreHorizontal, Paperclip, Phone, Send, Video,} from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function ChatPage() {
@@ -59,7 +52,7 @@ export default function ChatPage() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink render={<Link href="/" />}>Dashboard</BreadcrumbLink>
+              <BreadcrumbLink render={<Link href="dashboard" />}>Dashboard</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -78,11 +71,7 @@ export default function ChatPage() {
         <div className="h-full lg:grid lg:grid-cols-[280px_minmax(0,1fr)]">
           
           {/* Conversations */}
-          <div
-            className={`h-full border-border lg:block lg:border-r ${
-              mobileView === "chat" ? "hidden" : "block"
-            }`}
-          >
+          <div className={`h-full border-border lg:block lg:border-r ${mobileView === "chat" ? "hidden" : "block"}`}>
             <ConversationList
               selectedConversation={selectedConversation}
               onSelectConversation={(conversation) => {
@@ -93,19 +82,10 @@ export default function ChatPage() {
           </div>
 
           {/* Chat */}
-          <div
-            className={`h-full min-h-0 min-w-0 flex-col ${
-              mobileView === "chat" ? "flex" : "hidden"
-            } lg:flex`}
-          >
+          <div className={`h-full min-h-0 min-w-0 flex-col ${mobileView === "chat" ? "flex" : "hidden"} lg:flex`}>
             <div className="flex h-15.25 items-center justify-between border-b px-4">
               <div className="flex items-center gap-3">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="lg:hidden"
-                  onClick={() => setMobileView("conversations")}
-                >
+                <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setMobileView("conversations")}>
                   <ArrowLeft />
                 </Button>
                 <Avatar>
@@ -136,30 +116,12 @@ export default function ChatPage() {
             <ScrollArea className="min-h-0 flex-1">
               <div className="space-y-4 p-6">
                 {chatMessages[selectedConversation.id].map((message) => (
-                  <div
-                    key={message.id}
-                    className={`flex ${
-                      message.sender === "me" ? "justify-end" : "justify-start"
-                    }`}
-                  >
+                  <div key={message.id} className={`flex ${message.sender === "me" ? "justify-end" : "justify-start" }`}>
                     <div
-                      className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${
-                        message.sender === "me"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted"
-                      }`}
-                    >
+                      className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${message.sender === "me" ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
                       <p className="text-sm">{message.text}</p>
 
-                      <p
-                        className={`mt-1 text-[10px] ${
-                          message.sender === "me"
-                            ? "text-primary-foreground/70"
-                            : "text-muted-foreground"
-                        }`}
-                      >
-                        {message.time}
-                      </p>
+                      <p className={`mt-1 text-[10px] ${message.sender === "me" ? "text-primary-foreground/70" : "text-muted-foreground"}`}> {message.time}</p>
                     </div>
                   </div>
                 ))}
@@ -172,15 +134,7 @@ export default function ChatPage() {
                   <Paperclip />
                 </Button>
 
-                <Input
-                  value={messageText}
-                  onChange={(e) => setMessageText(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleSendMessage()
-                  }}
-                  placeholder="Write a message..."
-                  className="flex-1"
-                />
+                <Input value={messageText} onChange={(e) => setMessageText(e.target.value)} onKeyDown={(e) => {if (e.key === "Enter") handleSendMessage()}} placeholder="Write a message..." className="flex-1"/>
 
                 <Button size="icon" onClick={handleSendMessage}>
                   <Send className="size-4 translate-y-px -translate-x-px" />

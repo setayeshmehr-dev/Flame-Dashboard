@@ -155,7 +155,7 @@ export default function ProductDetailsPage() {
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-muted-foreground">
         <Link
-          href="/"
+          href="./../dashboard"
           className="transition-colors hover:text-foreground"
         >
           Dashboard

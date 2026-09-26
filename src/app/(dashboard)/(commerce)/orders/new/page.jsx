@@ -96,7 +96,7 @@ export default function NewOrderPage() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink render={<Link href="/" />}>
+            <BreadcrumbLink render={<Link href="./../dashboard" />}>
               Dashboard
             </BreadcrumbLink>
           </BreadcrumbItem>

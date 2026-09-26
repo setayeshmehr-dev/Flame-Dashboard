@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import {
   GripVertical,
+  MoreVertical,
   CalendarDays,
   Trash2,
   Plus,
@@ -66,6 +67,27 @@ export default function KanbanPage() {
   const [createOpen, setCreateOpen] = useState(false)
   const [formData, setFormData] = useState(emptyForm)
 
+  const [mobileColumnId, setMobileColumnId] = useState(
+    kanbanColumns[0]?.id ?? ""
+  )
+  const [mobileMenuTaskId, setMobileMenuTaskId] = useState(null)
+
+  useEffect(() => {
+    if (!mobileMenuTaskId) return
+
+    const handleOutsidePointerDown = (event) => {
+      if (event.target.closest("[data-mobile-move-menu]")) return
+
+      setMobileMenuTaskId(null)
+    }
+
+    document.addEventListener("pointerdown", handleOutsidePointerDown)
+
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsidePointerDown)
+    }
+  }, [mobileMenuTaskId])
+
   const columnsRef = useRef({})
   const cardsRef = useRef({})
   const dragRef = useRef(null)
@@ -83,6 +105,9 @@ export default function KanbanPage() {
       tasks: tasks.filter((task) => task.column === column.id),
     }))
   }, [tasks])
+
+  const mobileColumn =
+    columns.find((column) => column.id === mobileColumnId) || columns[0]
 
   const updateDragTarget = (x, y) => {
     const current = dragRef.current
@@ -394,7 +419,11 @@ export default function KanbanPage() {
       const result = []
       let inserted = false
 
-      for (let index = 0; index < currentTasks.length; index++) {
+      for (
+        let index = 0;
+        index < currentTasks.length;
+        index++
+      ) {
         const task = currentTasks[index]
 
         if (
@@ -452,7 +481,11 @@ export default function KanbanPage() {
 
       let columnIndex = 0
 
-      for (let index = 0; index < result.length; index++) {
+      for (
+        let index = 0;
+        index < result.length;
+        index++
+      ) {
         if (
           result[index].column !== original.columnId
         ) {
@@ -484,6 +517,23 @@ export default function KanbanPage() {
     setTasks((currentTasks) =>
       currentTasks.filter((task) => task.id !== taskId)
     )
+
+    setMobileMenuTaskId(null)
+  }
+
+  const moveTaskToColumn = (taskId, columnId) => {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.id === taskId
+          ? {
+              ...task,
+              column: columnId,
+            }
+          : task
+      )
+    )
+
+    setMobileMenuTaskId(null)
   }
 
   const handleCreateTask = () => {
@@ -741,7 +791,97 @@ export default function KanbanPage() {
         </Dialog>
       </div>
 
-      <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-4">
+      {/* MOBILE KANBAN */}
+      <div className="grid min-h-140 grid-cols-[104px_minmax(0,1fr)] gap-3 lg:hidden">
+        <div className="flex flex-col gap-2">
+          {columns.map((column) => {
+            const isActive =
+              mobileColumn?.id === column.id
+
+            return (
+              <button
+                key={column.id}
+                type="button"
+                onClick={() => {
+                  setMobileColumnId(column.id)
+                  setMobileMenuTaskId(null)
+                }}
+                className={[
+                  "w-full rounded-xl border px-3 py-3 text-left transition-colors",
+                  isActive
+                    ? "border-primary/50 bg-primary/5"
+                    : "border-border/60 bg-muted/20",
+                ].join(" ")}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span
+                    className={[
+                      "truncate text-xs font-semibold",
+                      isActive
+                        ? "text-foreground"
+                        : "text-muted-foreground",
+                    ].join(" ")}
+                  >
+                    {column.title}
+                  </span>
+
+                  <span className="shrink-0 text-[11px] text-muted-foreground">
+                    {column.tasks.length}
+                  </span>
+                </div>
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="min-w-0 overflow-hidden rounded-xl border border-border/60 bg-muted/20">
+          {mobileColumn && (
+            <>
+              <div className="flex items-center justify-between border-b border-border/60 px-4 py-3">
+                <div className="min-w-0">
+                  <h2 className="truncate text-sm font-semibold">
+                    {mobileColumn.title}
+                  </h2>
+
+                  <p className="mt-0.5 text-[11px] text-muted-foreground">
+                    {mobileColumn.tasks.length}{" "}
+                    {mobileColumn.tasks.length === 1
+                      ? "task"
+                      : "tasks"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="max-h-[calc(100vh-280px)] min-h-120 overflow-y-auto p-3">
+                <div className="space-y-3">
+                  {mobileColumn.tasks.map((task) => (
+                    <KanbanCard
+                      key={task.id}
+                      task={task}
+                      isMobile
+                      mobileMenuTaskId={mobileMenuTaskId}
+                      setMobileMenuTaskId={
+                        setMobileMenuTaskId
+                      }
+                      onMove={moveTaskToColumn}
+                      onDelete={deleteTask}
+                    />
+                  ))}
+
+                  {mobileColumn.tasks.length === 0 && (
+                    <div className="flex min-h-28 items-center justify-center rounded-lg border border-dashed border-border/60 text-xs text-muted-foreground">
+                      No tasks in this column
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* DESKTOP KANBAN — unchanged layout */}
+      <div className="hidden min-w-0 grid-cols-1 gap-4 lg:grid lg:grid-cols-2 xl:grid-cols-4">
         {columns.map((column) => {
           const placeholderIndex =
             drag?.target?.columnId === column.id
@@ -789,7 +929,8 @@ export default function KanbanPage() {
                     <KanbanCard
                       task={task}
                       cardRef={(element) => {
-                        cardsRef.current[task.id] = element
+                        cardsRef.current[task.id] =
+                          element
                       }}
                       onDragStart={startDrag}
                       onDelete={deleteTask}
@@ -855,14 +996,25 @@ function KanbanCard({
   onDragStart,
   onDelete,
   isDragPreview = false,
+  isMobile = false,
+  mobileMenuTaskId,
+  setMobileMenuTaskId,
+  onMove,
 }) {
   if (!task) return null
+
+  const mobileMenuOpen =
+    isMobile && mobileMenuTaskId === task.id
 
   return (
     <Card
       ref={cardRef}
       className={[
-        "group relative overflow-hidden p-4",
+        "group relative p-4",
+        isMobile
+          ? "overflow-visible"
+          : "overflow-hidden",
+        "lg:overflow-hidden",
         isDragPreview
           ? "cursor-grabbing shadow-2xl"
           : "transition-all duration-150 hover:border-border hover:shadow-sm",
@@ -883,16 +1035,91 @@ function KanbanCard({
         </div>
 
         {!isDragPreview && (
-          <button
-            type="button"
-            aria-label={`Move ${task.title}`}
-            onPointerDown={(event) =>
-              onDragStart(event, task)
-            }
-            className="-mt-1 flex size-7 shrink-0 cursor-grab touch-none items-center justify-center rounded-md text-muted-foreground opacity-0 transition hover:bg-muted hover:text-foreground group-hover:opacity-100 active:cursor-grabbing"
-          >
-            <GripVertical className="size-4" />
-          </button>
+          <>
+            {/* DESKTOP DRAG HANDLE */}
+            {!isMobile && (
+              <button
+                type="button"
+                aria-label={`Move ${task.title}`}
+                onPointerDown={(event) =>
+                  onDragStart(event, task)
+                }
+                className="-mt-1 hidden size-7 shrink-0 cursor-grab touch-none items-center justify-center rounded-md text-muted-foreground opacity-0 transition hover:bg-muted hover:text-foreground group-hover:flex active:cursor-grabbing lg:flex lg:opacity-0 lg:group-hover:opacity-100"
+              >
+                <GripVertical className="size-4" />
+              </button>
+            )}
+
+            {/* MOBILE THREE DOTS */}
+            {isMobile && (
+              <div className="relative shrink-0">
+                <button
+                  type="button"
+                  aria-label={`Move ${task.title}`}
+                  onPointerDown={(event) => {
+                    event.preventDefault()
+                    event.stopPropagation()
+
+                    setMobileMenuTaskId(
+                      mobileMenuOpen
+                        ? null
+                        : task.id
+                    )
+                  }}
+                  className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                >
+                  <MoreVertical className="size-4" />
+                </button>
+
+                {mobileMenuOpen && (
+                <div
+                  data-mobile-move-menu
+                  className="absolute right-0 top-10 z-50 w-40 rounded-lg border border-border bg-background p-1.5 shadow-lg"
+                  onPointerDown={(event) => event.stopPropagation()}
+                >
+                    <p className="px-2 py-1.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                      Move to
+                    </p>
+
+                    {kanbanColumns.map((column) => {
+                      const isCurrent =
+                        column.id === task.column
+
+                      return (
+                        <button
+                          key={column.id}
+                          type="button"
+                          disabled={isCurrent}
+                          onClick={() =>
+                            onMove?.(
+                              task.id,
+                              column.id
+                            )
+                          }
+                          className={[
+                            "flex w-full items-center rounded-md px-2 py-2 text-left text-xs transition-colors",
+                            isCurrent
+                              ? "cursor-default bg-muted font-medium text-foreground"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                          ].join(" ")}
+                        >
+                          <span className="truncate">
+                            {column.title}
+                          </span>
+
+                          {isCurrent && (
+                            <span className="ml-auto text-[10px] text-muted-foreground">
+                              Current
+                            </span>
+                          )}
+                        </button>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -933,7 +1160,12 @@ function KanbanCard({
                 onClick={() =>
                   onDelete?.(task.id)
                 }
-                className="flex size-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition hover:bg-red-500/10 hover:text-red-500 group-hover:opacity-100"
+                className={[
+                  "flex size-7 items-center justify-center rounded-md transition",
+                  isMobile
+                    ? "text-red-500 hover:bg-red-500/10"
+                    : "text-muted-foreground opacity-0 hover:bg-red-500/10 hover:text-red-500 group-hover:opacity-100",
+                ].join(" ")}
               >
                 <Trash2 className="size-3.5" />
               </button>

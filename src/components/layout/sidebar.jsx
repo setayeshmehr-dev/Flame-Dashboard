@@ -106,7 +106,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, setCollapsed, col
         </Link>
 
         <Link
-          href="/login"
+          href="/"
           className={`
             hover:bg-muted cursor-pointer w-8 h-8 items-center justify-center rounded-full shrink-0
             ${collapsed ? "hidden" : "flex"}

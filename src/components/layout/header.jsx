@@ -193,7 +193,7 @@ export default function Header({setSidebarOpen , setSearchOpen, setAppearanceOpe
                     <DropdownMenuSeparator />
 
                     <DropdownMenuItem variant="destructive">
-                        <Link href="/login" className="w-full flex gap-2.5" >
+                        <Link href="/" className="w-full flex gap-2.5" >
                             <LogOut />
                             Log out
                         </Link>

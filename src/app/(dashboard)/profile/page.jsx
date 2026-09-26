@@ -103,7 +103,7 @@ export default function ProfilePage() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink render={<Link href="/" />}>Dashboard</BreadcrumbLink>
+            <BreadcrumbLink render={<Link href="dashboard" />}>Dashboard</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -138,10 +138,10 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-                <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
+                <Link href="settings" className="group/button inline-flex shrink-0 items-center justify-center rounded-4xl border  border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-8 gap-1 px-3 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2"  >
                   <Pencil className="h-4 w-4 mr-1.5" />
                   Edit Profile
-                </Button>
+                </Link>
             </div>
           </div>
         </CardContent>

@@ -24,7 +24,7 @@ export const sidebarGroups = [
     {
         group: "OVERVIEW",
         items: [
-            {title: "Dashboard", icon: LayoutDashboard, href: "/"},
+            {title: "Dashboard", icon: LayoutDashboard, href: "/dashboard"},
             {title: "Analytics", icon: ChartColumn, href: "/analytics"},
             {title: "CRM", icon: Handshake, href: "/crm"},
             {title: "Charts", icon: ChartNoAxesCombined, href: "/charts"}
@@ -42,11 +42,8 @@ export const sidebarGroups = [
     {
         group: "APPS",
         items: [
-            {title: "Mail", icon: Mail, href: "/mail"},
             {title: "Chat", icon: MessageSquare, href: "/chat"},
             {title: "Kanban", icon: Kanban, href: "/kanban"},
-            {title: "Calendar", icon: Calendar, href: "/calendar"},
-            {title: "Wizard", icon: ListChecks, href: "/wizard"},
         ]
     },
 

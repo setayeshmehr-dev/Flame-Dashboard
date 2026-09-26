@@ -23,7 +23,7 @@ export default function ComingSoonPage() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink render={<Link href="/" />}>Dashboard</BreadcrumbLink>
+            <BreadcrumbLink render={<Link href="dashboard" />}>Dashboard</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -71,7 +71,7 @@ export default function ComingSoonPage() {
                 Go Back
               </Button>
               <Button >
-                <Link href="/">Dashboard</Link>
+                <Link href="dashboard">Dashboard</Link>
               </Button>
             </div>
           </CardContent>

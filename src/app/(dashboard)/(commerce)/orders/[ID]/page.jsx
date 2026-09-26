@@ -158,7 +158,7 @@ export default function OrderDetailsPage() {
     <div className="p-6 space-y-6">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-muted-foreground">
-        <Link href="/" className="hover:text-foreground transition-colors">
+        <Link href="../dashboard" className="hover:text-foreground transition-colors">
           Dashboard
         </Link>
         <span className="text-muted-foreground">/</span>

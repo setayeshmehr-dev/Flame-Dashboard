@@ -1,8 +1,7 @@
-
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
+import { useState } from "react"
 import { Eye, EyeOff, Flame } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -52,19 +51,12 @@ export default function LoginPage() {
           </linearGradient>
         </defs>
 
-        <Flame
-          size="1400"
-          className="size-full"
-          stroke="url(#flame-gradient)"
-        />
+        <Flame size="1400" className="size-full" stroke="url(#flame-gradient)"/>
       </svg>
       <Card className="w-full bg-background/80 z-20 max-w-sm border-border/60 shadow-sm">
         <CardHeader className="space-y-4 text-center">
           <div className="mx-auto m-0 flex size-11 items-center justify-center rounded-xl">
-            <Flame
-              className="size-7"
-              stroke="url(#flame-gradient)"
-            />
+            <Flame className="size-7" stroke="url(#flame-gradient)"/>
           </div>
 
           <span className="bg-linear-to-br m-0 from-primary from-25% to-secondary to-85% bg-clip-text text-transparent text-3xl ps-2.5 font-semibold">Flame</span>
@@ -116,11 +108,7 @@ export default function LoginPage() {
                   <p className="text-xs text-destructive">{errors.password}</p>
                 )}
 
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                   {showPassword ? (
                     <EyeOff className="size-4" />
                   ) : (
@@ -130,22 +118,11 @@ export default function LoginPage() {
               </div>
             </div>
 
-            
-
-            <Link
-              href="./"
-              onClick={handleSubmit}
-              className="flex bg-primary items-center h-9 gap-1.5 px-3 justify-center text-primary-foreground hover:bg-primary/90 rounded-full w-full"
-            >
+            <Link href="dashboard" onClick={handleSubmit} className="flex bg-primary items-center h-9 gap-1.5 px-3 justify-center text-primary-foreground hover:bg-primary/90 rounded-full w-full">
               Sign in
             </Link>
 
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full"
-              onClick={handleAutoFill}
-            >
+            <Button type="button" variant="outline" className="w-full" onClick={handleAutoFill}>
               Auto Fill
             </Button>
           </form>
@@ -154,4 +131,3 @@ export default function LoginPage() {
     </div>
   )
 }
-
