@@ -121,3 +121,21 @@ Actively developed as a frontend portfolio project and modern admin dashboard ex
 **Amir** — Frontend Developer
 
 Built with **Next.js & React**.
+
+<img width="510" height="602" alt="Image" src="https://github.com/user-attachments/assets/d4efb7f6-88e0-4843-a08c-b50c6229b374" />
+
+<img width="510" height="601" alt="Image" src="https://github.com/user-attachments/assets/feead791-7664-466c-8c2d-dadaa8ee926e" />
+
+<img width="510" height="598" alt="Image" src="https://github.com/user-attachments/assets/3a60b717-8928-47ab-bac5-1215ff69df47" />
+
+<img width="515" height="603" alt="Image" src="https://github.com/user-attachments/assets/a3335460-9c13-44e8-b2ee-c1ea442fcf26" />
+
+<img width="514" height="611" alt="Image" src="https://github.com/user-attachments/assets/4027e603-f0d3-4e01-b758-d0edd2066092" />
+
+<img width="515" height="601" alt="Image" src="https://github.com/user-attachments/assets/c582244c-fc16-47a8-9456-cc1004357e16" />
+
+<img width="515" height="606" alt="Image" src="https://github.com/user-attachments/assets/c4431b86-e134-46d3-8112-2e0e02aa8689" />
+
+<img width="517" height="609" alt="Image" src="https://github.com/user-attachments/assets/fd961d84-79fe-4721-b111-cba7fd62d6fe" />
+
+<img width="1499" height="768" alt="Image" src="https://github.com/user-attachments/assets/ffd9df36-7f44-4494-bcc8-d6383cb5e353" />
