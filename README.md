@@ -14,7 +14,8 @@ Flame focuses on a clean and consistent UI, reusable components, responsive layo
 
 Overview of key metrics, charts, and analytics in a clean and intuitive dashboard.
 
-> 📸 **Dashboard Screenshot**
+<img width="515" height="601" alt="Image" src="https://github.com/user-attachments/assets/c582244c-fc16-47a8-9456-cc1004357e16" />
+
 
 ---
 
@@ -30,7 +31,7 @@ Manage orders with search, filtering, pagination, row selection, column visibili
 
 Browse and manage products through a clean and responsive product management interface.
 
-> 📸 **Products Screenshot**
+<img width="510" height="602" alt="Image" src="https://github.com/user-attachments/assets/d4efb7f6-88e0-4843-a08c-b50c6229b374" />
 
 ---
 
@@ -38,7 +39,7 @@ Browse and manage products through a clean and responsive product management int
 
 Interactive drag & drop task management with multiple columns and smooth task positioning.
 
-> 🎞️ **Kanban GIF**
+<img width="510" height="598" alt="Image" src="https://github.com/user-attachments/assets/3a60b717-8928-47ab-bac5-1215ff69df47" />
 
 ---
 
@@ -46,7 +47,7 @@ Interactive drag & drop task management with multiple columns and smooth task po
 
 Responsive messaging interface with conversations, message history, and mobile-friendly navigation.
 
-> 📸 **Chat Screenshot**
+<img width="510" height="601" alt="Image" src="https://github.com/user-attachments/assets/feead791-7664-466c-8c2d-dadaa8ee926e" />
 
 ---
 
@@ -70,7 +71,7 @@ Centralized notification system with unread states and quick access from the das
 
 Switch between Light, Dark, and System modes with multiple color presets and layout options.
 
-> 🎞️ **Theme Customization GIF**
+<img width="515" height="606" alt="Image" src="https://github.com/user-attachments/assets/c4431b86-e134-46d3-8112-2e0e02aa8689" />
 
 ---
 
@@ -78,7 +79,8 @@ Switch between Light, Dark, and System modes with multiple color presets and lay
 
 Quickly navigate through the dashboard using global search and keyboard shortcuts.
 
-> 🎞️ **Global Search GIF**
+<img width="514" height="611" alt="Image" src="https://github.com/user-attachments/assets/4027e603-f0d3-4e01-b758-d0edd2066092" />
+
 
 ---
 
@@ -101,7 +103,8 @@ Built entirely with **JavaScript / JSX**.
 
 Flame is designed to provide a consistent experience across desktop, tablet, and mobile devices.
 
-> 📸 **Responsive Design Screenshot / GIF**
+<img width="515" height="603" alt="Image" src="https://github.com/user-attachments/assets/a3335460-9c13-44e8-b2ee-c1ea442fcf26" />
+
 
 ## 🎯 Design Focus
 
