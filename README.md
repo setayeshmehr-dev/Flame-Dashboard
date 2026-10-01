@@ -1,12 +1,11 @@
-# Flame — Admin Dashboard
+# 🔥 Flame — Admin Dashboard
 
 A modern and responsive admin dashboard built with **Next.js, React, Tailwind CSS, and shadcn/ui**.
-
 Flame focuses on a clean and consistent UI, reusable components, responsive layouts, and modern dashboard interactions.
 
 ## 🚀 Live Demo
 
-[View Live Demo](YOUR_VERCEL_URL)
+[Live Demo]((https://admin-panel-eight-gules-17.vercel.app/dashboard))
 
 ## 🛠️ Tech Stack
 
@@ -15,11 +14,6 @@ Flame focuses on a clean and consistent UI, reusable components, responsive layo
 - **Tailwind CSS**
 - **shadcn/ui**
 - **Recharts**
-- **dnd-kit**
-- **Lucide React**
-- **Hugeicons**
-- **date-fns**
-- **Sonner**
 
 ## 🎯 Design Focus
 
@@ -29,6 +23,14 @@ Flame focuses on a clean and consistent UI, reusable components, responsive layo
 - Responsive layouts
 - Interactive user experience
 - Maintainable project structure
+
+### 👨‍💻 Developer
+  ### Amirali Setayeshmehr
+  
+### 👨‍💻 Sensei
+  ### Parsa Ghorbanian
+  [PARNIAN](https://trainingsitedesign.ir/)
+  [Instagram](https://www.instagram.com/parsa_ghorbanian_web/)
 
 ### 📊 Dashboard & Analytics
 
