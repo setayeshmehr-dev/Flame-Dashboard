@@ -5,7 +5,7 @@ Flame focuses on a clean and consistent UI, reusable components, responsive layo
 
 ## 🚀 Live Demo
 
-[Live Demo]((https://admin-panel-eight-gules-17.vercel.app/dashboard))
+[Live Demo](https://admin-panel-eight-gules-17.vercel.app/dashboard)
 
 ## 🛠️ Tech Stack
 
@@ -28,7 +28,7 @@ Flame focuses on a clean and consistent UI, reusable components, responsive layo
   Amirali Setayeshmehr
   
 ### 👨‍💻 Sensei
-  Parsa Ghorbanian
+  Parsa Ghorbanian<br/>
   <<[PARNIAN](https://trainingsitedesign.ir/)>><br/>
   <<[Instagram](https://www.instagram.com/parsa_ghorbanian_web/)>>
 
