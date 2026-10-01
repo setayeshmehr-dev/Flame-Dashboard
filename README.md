@@ -32,7 +32,7 @@ Flame focuses on a clean and consistent UI, reusable components, responsive layo
   <<[PARNIAN](https://trainingsitedesign.ir/)>><br/>
   <<[Instagram](https://www.instagram.com/parsa_ghorbanian_web/)>>
 
-### 📊 Dashboard & Analytics
+### 📊 Dashboard Layout
 
 Overview of key metrics, charts, and analytics in a clean and intuitive dashboard.
 
@@ -85,3 +85,5 @@ Quickly navigate through the dashboard using global search and keyboard shortcut
 Flame is designed to provide a consistent experience across desktop, tablet, and mobile devices.
 
 <img width="515" height="603" alt="Image" src="https://github.com/user-attachments/assets/a3335460-9c13-44e8-b2ee-c1ea442fcf26" />
+
+Check Live Demo for more .... 😉
